@@ -6,47 +6,47 @@ The design adapts an FPGA-based UART implementation (transmitter, receiver, baud
 
 ---
 
-## 📌 Motivation
-- Extend **Microwatt** with essential I/O functionality (serial console).
-- Demonstrate **peripheral integration** into an open-source CPU SoC.
-- Provide a **reusable UART IP** block for the open hardware community.
-- Enable **real-time communication** and debugging support for Microwatt applications.
+## 1️ Motivation
+- Extend **Microwatt** with essential I/O functionality (serial console).  
+- Demonstrate **peripheral integration** into an open-source CPU SoC.  
+- Provide a **reusable UART IP** block for the open hardware community.  
+- Enable **real-time communication** and debugging support for Microwatt applications.  
 
 ---
 
-## ✨ Core Features
-- Full-duplex UART (independent TX and RX).
-- Baud rate generator (configurable divisor).
-- Memory-mapped control/status registers:
-  - **DATA** (read/write)
-  - **STATUS** (TX busy, RX ready, error flags)
-  - **CONTROL** (enable/reset/interrupt enable)
-  - **BAUD** (divisor configuration)
-- Wishbone bus adapter for Microwatt integration.
-- Testbenches (UART core + SoC integration).
-- Example software programs running on Microwatt.
+## 2️ Core Features
+- Full-duplex UART (independent TX and RX).  
+- Baud rate generator (configurable divisor).  
+- Memory-mapped control/status registers:  
+  - **DATA** (read/write)  
+  - **STATUS** (TX busy, RX ready, error flags)  
+  - **CONTROL** (enable/reset/interrupt enable)  
+  - **BAUD** (divisor configuration)  
+- Wishbone bus adapter for Microwatt integration.  
+- Testbenches (UART core + SoC integration).  
+- Example software programs running on Microwatt.  
 
 ---
 
-## 🧩 High-Level Block Diagram
-            ┌───────────────────┐
-            │   Microwatt CPU    │
-            │ (Instruction + ALU)│
-            └────────▲───────────┘
-                     │ Wishbone Bus
-                     │
-          ┌───────────┴─────────────┐
-          │  UART Peripheral         │
-          │ (Wrapper + Bus Adapter)  │
-          └───────┬─────────┬────────┘
-                  │         │
-            UART TXD   UART RXD
-                  │
-         Baud Rate Generator
+## 3️ High-Level Block Diagram
+        ┌───────────────────┐
+        │   Microwatt CPU    │
+        │ (Instruction + ALU)│
+        └────────▲───────────┘
+                 │ Wishbone Bus
+                 │
+      ┌───────────┴─────────────┐
+      │  UART Peripheral         │
+      │ (Wrapper + Bus Adapter)  │
+      └───────┬─────────┬────────┘
+              │         │
+        UART TXD   UART RXD
+              │
+     Baud Rate Generator
 
 ---
 
-## ⚙️ Procedure / Implementation Steps
+## 4️⃣ Procedure / Implementation Steps
 1. **RTL UART Core**  
    - Verilog TX, RX, and Baud Rate Generator modules.  
 
@@ -75,7 +75,7 @@ The design adapts an FPGA-based UART implementation (transmitter, receiver, baud
 
 ---
 
-## ✅ Expected Outcomes
+## 5️ Expected Outcomes
 - A functional UART peripheral integrated into Microwatt.  
 - Open-source RTL (Verilog + VHDL wrapper) and bus interface.  
 - Simulation waveforms + FPGA demonstration.  
@@ -83,25 +83,14 @@ The design adapts an FPGA-based UART implementation (transmitter, receiver, baud
 - Documentation for reuse by the community.  
 
 ---
-# Languages & Tools Used in This Challenge
 
-This project integrates a custom **UART peripheral** into the [Microwatt SoC](https://github.com/antonblanchard/microwatt) 
-for the [ChipFoundry Microwatt Challenge](https://chipfoundry.io/challenges/microwatt).
-
-## 🛠️ Languages
-
-- **Verilog**  
-  - Used for the UART core (Transmitter, Receiver, Baud Rate Generator).
-- **VHDL**  
-  - Used for Microwatt CPU and the UART wrapper / Wishbone bus adapter.
-- **C**  
-  - Used for test programs that run on the Microwatt CPU to send/receive data via UART.
-- **Markdown**  
-  - Used for documentation (`README.md`, design notes, block diagrams).
-- *(Optional)* **Shell/Make**  
-  - Used for build automation (compiling C code, running simulations, synthesizing to FPGA).
+## 6️ Languages Involved
+- **Verilog** → UART core (Transmitter, Receiver, Baud Rate Generator).  
+- **VHDL** → Microwatt CPU + UART wrapper / Wishbone adapter.  
+- **C** → Test programs running on Microwatt CPU.  
+- **Markdown** → Documentation (`README.md`, design notes, block diagrams).  
+- *(Optional)* **Shell/Make** → Build automation (compile, simulate, synthesize).  
 
 ---
 
-## 📂 Repository Structure
-
+##  Repository Structure
