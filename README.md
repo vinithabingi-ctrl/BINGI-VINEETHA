@@ -1,10 +1,23 @@
 # UART Peripheral for Microwatt SoC
+# Microwatt UART Peripheral
 
-This repository provides a **Universal Asynchronous Receiver/Transmitter (UART)** peripheral integrated into the [Microwatt](https://github.com/antonblanchard/microwatt) open-source POWER soft CPU.  
+## Summary
+This project adds a **UART peripheral** to the **Microwatt SoC**.  
+It provides **serial console support**, debugging, and basic I/O.  
+The design includes a **Verilog UART core** (TX, RX, baud generator).  
+A **VHDL Wishbone wrapper** integrates the UART with memory-mapped registers.  
+Simulation testbenches and **example C programs** demonstrate usage on FPGA and simulation.  
 
-The design adapts an FPGA-based UART implementation (transmitter, receiver, baud rate generator) and connects it to Microwatt’s bus system through a memory-mapped interface. It enables the Microwatt CPU to perform serial I/O, supporting console output, debugging, and communication with external devices.
+## Features
+- Full-duplex UART (TX/RX) with configurable baud rate
+- Memory-mapped registers: DATA, STATUS, CONTROL, BAUD
+- Wishbone bus interface for Microwatt integration
+- Simulation testbenches and FPGA support
+- Example C software for testing UART communication
 
----
+## Repository Structure
+
+
 
 ## 1️ Motivation
 - Extend **Microwatt** with essential I/O functionality (serial console).  
