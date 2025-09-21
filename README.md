@@ -84,12 +84,3 @@ The design adapts an FPGA-based UART implementation (transmitter, receiver, baud
 
 ---
 
-## 📂 Repository Structure
-
----
-
-## 🚀 Getting Started
-1. Clone Microwatt and this repository:
-   ```bash
-   git clone https://github.com/antonblanchard/microwatt
-   git clone https://github.com/TMRgit/chipfoundry-uart
