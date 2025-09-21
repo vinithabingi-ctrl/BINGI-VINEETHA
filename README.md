@@ -1,34 +1,95 @@
 # UART Peripheral for Microwatt SoC
 
-This repository adds a **Universal Asynchronous Receiver Transmitter (UART)** 
-as a memory-mapped peripheral to the [Microwatt](https://github.com/antonblanchard/microwatt) 
-open-source PowerPC softcore.
+This repository provides a **Universal Asynchronous Receiver/Transmitter (UART)** peripheral integrated into the [Microwatt](https://github.com/antonblanchard/microwatt) open-source POWER soft CPU.  
 
-## Features
-- UART Transmitter and Receiver
-- Baud Rate Generator
-- Memory-mapped Wishbone interface
-- FPGA tested on DE1-SoC board
-- Compatible with Microwatt SoC
+The design adapts an FPGA-based UART implementation (transmitter, receiver, baud rate generator) and connects it to Microwatt’s bus system through a memory-mapped interface. It enables the Microwatt CPU to perform serial I/O, supporting console output, debugging, and communication with external devices.
 
-## Repository Layout
-- `rtl/` : Verilog source code for UART (TX, RX, Baud)
-- `soc/` : VHDL wrapper + Wishbone bus integration
-- `sim/` : Testbenches for UART & SoC integration
-- `fpga/`: Quartus project files, pin assignments
-- `docs/`: Documentation and original project report
-- `tests/`: C test programs to run on Microwatt CPU
+---
 
-## Memory Map
-| Address | Register      | Description              |
-|---------|---------------|--------------------------|
-| 0x00    | UART_DATA     | TX write / RX read       |
-| 0x04    | UART_STATUS   | TX busy, RX ready, Errs  |
-| 0x08    | UART_BAUD     | Baud rate divisor        |
-| 0x0C    | UART_CONTROL  | Enable, reset, interrupts|
+## 📌 Motivation
+- Extend **Microwatt** with essential I/O functionality (serial console).
+- Demonstrate **peripheral integration** into an open-source CPU SoC.
+- Provide a **reusable UART IP** block for the open hardware community.
+- Enable **real-time communication** and debugging support for Microwatt applications.
 
-## How to Run
-1. Clone Microwatt repo and this repo inside `soc/`:
-   ```sh
+---
+
+## ✨ Core Features
+- Full-duplex UART (independent TX and RX).
+- Baud rate generator (configurable divisor).
+- Memory-mapped control/status registers:
+  - **DATA** (read/write)
+  - **STATUS** (TX busy, RX ready, error flags)
+  - **CONTROL** (enable/reset/interrupt enable)
+  - **BAUD** (divisor configuration)
+- Wishbone bus adapter for Microwatt integration.
+- Testbenches (UART core + SoC integration).
+- Example software programs running on Microwatt.
+
+---
+
+## 🧩 High-Level Block Diagram
+            ┌───────────────────┐
+            │   Microwatt CPU    │
+            │ (Instruction + ALU)│
+            └────────▲───────────┘
+                     │ Wishbone Bus
+                     │
+          ┌───────────┴─────────────┐
+          │  UART Peripheral         │
+          │ (Wrapper + Bus Adapter)  │
+          └───────┬─────────┬────────┘
+                  │         │
+            UART TXD   UART RXD
+                  │
+         Baud Rate Generator
+
+---
+
+## ⚙️ Procedure / Implementation Steps
+1. **RTL UART Core**  
+   - Verilog TX, RX, and Baud Rate Generator modules.  
+
+2. **Bus Integration**  
+   - VHDL wrapper + Wishbone adapter for Microwatt.  
+   - Memory-mapped register set (DATA, STATUS, CONTROL, BAUD).  
+
+3. **SoC Integration**  
+   - Modify Microwatt SoC top-level to instantiate the UART.  
+   - Assign base address (default: `0xC0002000`).  
+
+4. **Simulation & Testbenches**  
+   - Verify TX/RX, baud rates, framing, parity, and error handling.  
+   - Run SoC testbench with Microwatt executing UART code.  
+
+5. **Software Test**  
+   - C test program to send/receive characters:  
+     ```c
+     uart_putc('H');
+     uart_putc('i');
+     ```  
+
+6. **FPGA Deployment (optional)**  
+   - Synthesize design on DE1-SoC (or other FPGA).  
+   - Demonstrate live serial output via UART-to-USB.  
+
+---
+
+## ✅ Expected Outcomes
+- A functional UART peripheral integrated into Microwatt.  
+- Open-source RTL (Verilog + VHDL wrapper) and bus interface.  
+- Simulation waveforms + FPGA demonstration.  
+- Example software (C tests) for UART communication.  
+- Documentation for reuse by the community.  
+
+---
+
+## 📂 Repository Structure
+
+---
+
+## 🚀 Getting Started
+1. Clone Microwatt and this repository:
+   ```bash
    git clone https://github.com/antonblanchard/microwatt
    git clone https://github.com/TMRgit/chipfoundry-uart
