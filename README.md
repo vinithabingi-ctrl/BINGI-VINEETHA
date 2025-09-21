@@ -83,4 +83,25 @@ The design adapts an FPGA-based UART implementation (transmitter, receiver, baud
 - Documentation for reuse by the community.  
 
 ---
+# Languages & Tools Used in This Challenge
+
+This project integrates a custom **UART peripheral** into the [Microwatt SoC](https://github.com/antonblanchard/microwatt) 
+for the [ChipFoundry Microwatt Challenge](https://chipfoundry.io/challenges/microwatt).
+
+## 🛠️ Languages
+
+- **Verilog**  
+  - Used for the UART core (Transmitter, Receiver, Baud Rate Generator).
+- **VHDL**  
+  - Used for Microwatt CPU and the UART wrapper / Wishbone bus adapter.
+- **C**  
+  - Used for test programs that run on the Microwatt CPU to send/receive data via UART.
+- **Markdown**  
+  - Used for documentation (`README.md`, design notes, block diagrams).
+- *(Optional)* **Shell/Make**  
+  - Used for build automation (compiling C code, running simulations, synthesizing to FPGA).
+
+---
+
+## 📂 Repository Structure
 
