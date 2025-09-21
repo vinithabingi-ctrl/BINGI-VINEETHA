@@ -93,4 +93,4 @@ The design adapts an FPGA-based UART implementation (transmitter, receiver, baud
 
 ---
 
-##  Repository Structure
+
