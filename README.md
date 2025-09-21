@@ -1,5 +1,4 @@
 # UART Peripheral for Microwatt SoC
-# Microwatt UART Peripheral
 
 ## Summary
 This project adds a **UART peripheral** to the **Microwatt SoC**.  
@@ -15,7 +14,7 @@ Simulation testbenches and **example C programs** demonstrate usage on FPGA and 
 - Simulation testbenches and FPGA support
 - Example C software for testing UART communication
 
-## Repository Structure
+
 
 
 
@@ -59,7 +58,7 @@ Simulation testbenches and **example C programs** demonstrate usage on FPGA and 
 
 ---
 
-## 4️⃣ Procedure / Implementation Steps
+## 4️ Procedure / Implementation Steps
 1. **RTL UART Core**  
    - Verilog TX, RX, and Baud Rate Generator modules.  
 
